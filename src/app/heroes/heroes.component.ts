@@ -9,12 +9,7 @@ import { Hero } from './hero';
 })
 export class HeroesComponent implements OnInit {
 
-  selectedHero: Hero
   heroes: Hero[]
-
-  onClick(hero: Hero): void {
-    this.selectedHero = hero
-  }
 
   getHeroes(): void {
     this.heroService.getHeroes()
