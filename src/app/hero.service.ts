@@ -18,6 +18,14 @@ export class HeroService {
 
   private heroesUrl = 'api/heroes';
 
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions)
+            .pipe(
+              tap(hero => this.log(`saved hero id= ${hero.id}`)),
+              catchError(this.handleError<Hero>('add hero'))
+            )
+  }
+
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
